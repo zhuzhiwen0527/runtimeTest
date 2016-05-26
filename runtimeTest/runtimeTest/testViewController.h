@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "testSuperViewController.h"
-@interface testViewController : testSuperViewController
+
+@protocol testDelegate <NSObject>
+
+- (void)testDelegate:(NSString*)str;
+
+@end
+@interface testViewController : testSuperViewController<NSCopying,NSCoding>
+@property (nonatomic,weak)id <testDelegate> delegate;
 @property (nonatomic,copy)NSArray * arr;
 @property (nonatomic,copy)NSString * str;
 

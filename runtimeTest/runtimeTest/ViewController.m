@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.flag = 2;
-    [self ex_registerClassPair];
+ 
     
 //    NSLog(@"%s",class_getName([self class]));
 //    NSLog(@"%@",class_getSuperclass([self class]));
@@ -93,9 +93,36 @@
     
     for (int i = 0 ; i < outCount ; i++) {
         Method method = methods[i];
-        
+      //  [test performSelector:method_getName(method)];
     }
+    BOOL isResponds =class_respondsToSelector(cls,@selector(method2WithArg:arg2:));
+    NSLog(@"testViewcontroller is %@ respondsToSelector method2WithArg:arg2", isResponds ? @"":@"not");
+    //方法的实现
+    IMP imp = class_getMethodImplementation(cls, @selector(method1));
+    imp();
+    
+    NSLog(@"==================================");
+    //协议
+    
+    Protocol * __unsafe_unretained *protocols = class_copyProtocolList(cls, &outCount);
+    Protocol * protocol;
+    NSLog(@"%d",outCount);
+    for (int i = 0; i < outCount; i++) {
+        protocol = protocols[i];
+        NSLog(@"protocol name is %s",protocol_getName(protocol));
+    }
+    NSLog(@"testViewcontroller is %@ responsed to protocol %s",class_conformsToProtocol(cls, protocol) ? @"":@"not",protocol_getName(protocol));
+    
+       NSLog(@"==================================");
+    
+    
+    
+    //动态创建类
+    [self ex_registerClassPair];
+    
+ 
 }
+
 
 
 
@@ -113,19 +140,35 @@ void testMetaClass(id self,SEL _cmd){
     NSLog(@"NSObjects meta class is %p",objc_getClass((__bridge void*)[NSObject class]));
     
 }
+void method1(id self,SEL _cmd){
 
+
+    NSLog(@"this is method1");
+
+}
 //动态添加类  及方法
 - (void)ex_registerClassPair{
-    
+    //动态创建一个继承与NSError的类
     Class newClass = objc_allocateClassPair([NSError class], "TestClass", 0) ;
-   BOOL didAddMethod =  class_addMethod(newClass, @selector(testMetaClass), (IMP)testMetaClass, "v@:");
-    //动态添加类
+    //添加方法
+    class_addMethod(newClass, @selector(testMetaClass), (IMP)testMetaClass, "v@:");
+    //替换方法
+    class_replaceMethod(newClass, @selector(method1), (IMP)testMetaClass, "v@:");
+    class_replaceMethod(newClass, @selector(testMetaClass), (IMP)method1, "v@:");
+    //添加变量
+    class_addIvar(newClass, "_ivar1", sizeof(NSString*), log(sizeof(NSString*)), "i");
+    
+    objc_property_attribute_t type = {"T", "@\"NSString\""};
+    objc_property_attribute_t ownership = { "C", "" };
+    objc_property_attribute_t backingivar = { "V", "_ivar1"};
+    objc_property_attribute_t attrs[] = {type, ownership, backingivar};
+    class_addProperty(newClass, "property2", attrs, 3);
+    //注册
     objc_registerClassPair(newClass);
     id instance = [[newClass alloc] initWithDomain:@"some domain" code:0 userInfo:nil];
-    if (didAddMethod) {
-
-          [instance performSelector:@selector(testMetaClass)];
-    }
+    [instance performSelector:@selector(testMetaClass)];
+    [instance performSelector:@selector(method1)];
+  
   
 
 }
