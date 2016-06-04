@@ -11,4 +11,6 @@
 #define STR (@"什么情况")
 #import "testViewController.h"
 #import "testSuperViewController.h"
+#import "UIView+associate.h"
+#import <objc/runtime.h>
 #endif /* MyHearder_h */

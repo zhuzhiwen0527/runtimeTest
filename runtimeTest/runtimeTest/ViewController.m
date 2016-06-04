@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "AFNetworking.h"
-#import <objc/runtime.h>
+#import "NSMutableArray+safe.h"
 
 @interface ViewController ()
 
@@ -19,7 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.flag = 2;
- 
+  
+  
     
 //    NSLog(@"%s",class_getName([self class]));
 //    NSLog(@"%@",class_getSuperclass([self class]));
@@ -93,6 +94,8 @@
     
     for (int i = 0 ; i < outCount ; i++) {
         Method method = methods[i];
+        NSLog(@" 方法: %@",NSStringFromSelector(method_getName(method)));
+        
       //  [test performSelector:method_getName(method)];
     }
     BOOL isResponds =class_respondsToSelector(cls,@selector(method2WithArg:arg2:));
@@ -119,8 +122,15 @@
     
     //动态创建类
     [self ex_registerClassPair];
+    __weak typeof(self) weakSelf = self;
     
- 
+    //关联
+    [self.view setTapActionWithBlock:^{
+        CGFloat f = arc4random()%255/255.0;
+        weakSelf.view.backgroundColor = [UIColor colorWithRed:f green:f blue:f alpha:1];
+    }];
+    
+    [self AFNet];
 }
 
 
@@ -177,4 +187,20 @@ void method1(id self,SEL _cmd){
     NSLog(@"喵喵");
 
 }
+
+
+- (void)AFNet{
+    
+    [[AFNetworkReachabilityManager sharedManager]  startMonitoring];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSLog(@"%ld",(long)status);
+    }];
+    NSArray * arr = [NSArray arrayWithObjects:@"1",@"2", nil];
+    NSMutableArray * mArr = [NSMutableArray arrayWithArray:arr];
+
+    
+    NSLog(@"%@",[mArr objectAtIndex:3]);
+}
+
+
 @end

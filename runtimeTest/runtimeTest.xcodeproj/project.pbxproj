@@ -18,6 +18,8 @@
 		ED56F37B1CF3FD42002279EC /* runtimeTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ED56F37A1CF3FD42002279EC /* runtimeTestUITests.m */; };
 		ED56F3901CF44523002279EC /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED56F38F1CF44523002279EC /* testViewController.m */; };
 		ED56F39E1CF45334002279EC /* testSuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED56F39D1CF45334002279EC /* testSuperViewController.m */; };
+		EDBC48001D0113BB0076141C /* UIView+associate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBC47FF1D0113BB0076141C /* UIView+associate.m */; };
+		EDD0DEF81D0137A0002B5F22 /* NSMutableArray+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0DEF71D0137A0002B5F22 /* NSMutableArray+safe.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,10 @@
 		ED56F39B1CF44BD5002279EC /* MYPchHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYPchHeader.pch; sourceTree = "<group>"; };
 		ED56F39C1CF45334002279EC /* testSuperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testSuperViewController.h; sourceTree = "<group>"; };
 		ED56F39D1CF45334002279EC /* testSuperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testSuperViewController.m; sourceTree = "<group>"; };
+		EDBC47FE1D0113BB0076141C /* UIView+associate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+associate.h"; sourceTree = "<group>"; };
+		EDBC47FF1D0113BB0076141C /* UIView+associate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+associate.m"; sourceTree = "<group>"; };
+		EDD0DEF61D0137A0002B5F22 /* NSMutableArray+safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+safe.h"; sourceTree = "<group>"; };
+		EDD0DEF71D0137A0002B5F22 /* NSMutableArray+safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+safe.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,10 @@
 				ED56F39B1CF44BD5002279EC /* MYPchHeader.pch */,
 				ED56F39C1CF45334002279EC /* testSuperViewController.h */,
 				ED56F39D1CF45334002279EC /* testSuperViewController.m */,
+				EDBC47FE1D0113BB0076141C /* UIView+associate.h */,
+				EDBC47FF1D0113BB0076141C /* UIView+associate.m */,
+				EDD0DEF61D0137A0002B5F22 /* NSMutableArray+safe.h */,
+				EDD0DEF71D0137A0002B5F22 /* NSMutableArray+safe.m */,
 			);
 			path = runtimeTest;
 			sourceTree = "<group>";
@@ -361,9 +371,11 @@
 			files = (
 				ED56F35D1CF3FD41002279EC /* ViewController.m in Sources */,
 				ED56F35A1CF3FD41002279EC /* AppDelegate.m in Sources */,
+				EDD0DEF81D0137A0002B5F22 /* NSMutableArray+safe.m in Sources */,
 				ED56F39E1CF45334002279EC /* testSuperViewController.m in Sources */,
 				ED56F3901CF44523002279EC /* testViewController.m in Sources */,
 				ED56F3571CF3FD41002279EC /* main.m in Sources */,
+				EDBC48001D0113BB0076141C /* UIView+associate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
