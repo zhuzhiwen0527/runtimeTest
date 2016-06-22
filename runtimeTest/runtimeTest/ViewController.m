@@ -124,7 +124,7 @@
     [self ex_registerClassPair];
     __weak typeof(self) weakSelf = self;
     
-    //关联
+    //关联  添加手势
     [self.view setTapActionWithBlock:^{
         CGFloat f = arc4random()%255/255.0;
         weakSelf.view.backgroundColor = [UIColor colorWithRed:f green:f blue:f alpha:1];
@@ -178,7 +178,7 @@ void method1(id self,SEL _cmd){
     id instance = [[newClass alloc] initWithDomain:@"some domain" code:0 userInfo:nil];
     [instance performSelector:@selector(testMetaClass)];
     [instance performSelector:@selector(method1)];
-  
+
   
 
 }
@@ -199,7 +199,7 @@ void method1(id self,SEL _cmd){
     NSMutableArray * mArr = [NSMutableArray arrayWithArray:arr];
 
     
-    NSLog(@"%@",[mArr objectAtIndex:3]);
+    NSLog(@"%@",mArr[3]);
 }
 
 
