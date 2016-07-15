@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "AFNetworking.h"
 #import "NSMutableArray+safe.h"
-
+#import "UIViewController+swzzing.h"
 @interface ViewController ()
 
 @end
@@ -182,6 +182,13 @@ void method1(id self,SEL _cmd){
   
 
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+
+}
+
 - (void)test{
 
     NSLog(@"喵喵");
